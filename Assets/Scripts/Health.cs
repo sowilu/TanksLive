@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Health : MonoBehaviour
 {
@@ -21,7 +22,19 @@ public class Health : MonoBehaviour
         if (currentHealth <= 0)
         {
             currentHealth = 0;
-            print("TODO: die");
+
+            var player = GetComponent<Player>();
+            if (player.isPlayer1)
+            {
+                //Score.instance.SetScore(0, 1);
+                Score.instance.SetScore(p2:1);
+            }
+            else
+            {
+                Score.instance.SetScore(p1:1);
+            }
+            
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
         
         healthBar.localScale = new Vector3(

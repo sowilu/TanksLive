@@ -15,7 +15,6 @@ public class Barrel : MonoBehaviour
         if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Bullet") )
         {
             Invoke(nameof(Explode), countdown);
-
         }
     }
 
@@ -25,7 +24,7 @@ public class Barrel : MonoBehaviour
         position.y = 0;
         var rotation = Quaternion.Euler(0, Random.Range(0, 360), 0);
         Instantiate(effectPrefab, position, rotation);
-        
+        Spawner.spawnCount--;
         Destroy(gameObject);
     }
 }

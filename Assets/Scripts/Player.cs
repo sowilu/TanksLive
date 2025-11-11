@@ -60,7 +60,9 @@ public class Player : MonoBehaviour
 
         if (canStir)
         {
-            rb.velocity = direction.normalized * speed;
+            var movement = direction * speed;
+            movement.y = rb.velocity.y;
+            rb.velocity = movement;
         }
         
     }
